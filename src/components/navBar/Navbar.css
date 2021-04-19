@@ -1,0 +1,26 @@
+.topNav {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+}
+
+.titleNav { 
+  font-size: 20px;
+  font-weight: bold;
+} 
+
+.links {
+  display: flex;
+  list-style-type: none;
+}
+
+.link {
+  margin: 0 8px;
+  padding-right: 12px;
+}
+
+.navBar {
+  background-color: rgb(207, 206, 206);
+}
