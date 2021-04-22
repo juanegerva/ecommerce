@@ -1,12 +1,14 @@
 import "./Navbar.css"
-import React from 'react'
+import {CartWidget} from "../CartWidget/CartWidget"
+
 
 
 export const NavBar = () => {
+  
   return (
     <div className="navBar">
       <header className="topNav">
-        <img src={""} alt={"logo"} />
+        <img src="" alt="logo" />
         <p className="titleNav">Tornillos & Fijaciones</p>
         <nav className="navigation">
           <ul className="links">
@@ -24,8 +26,13 @@ export const NavBar = () => {
             </li>
           </ul>
         </nav>
+        <div>
+          <input type="text" placeholder="Buscar" />
+          <CartWidget/>       
+        </div>      
       </header>
     </div>
   );
 }
 
+  
