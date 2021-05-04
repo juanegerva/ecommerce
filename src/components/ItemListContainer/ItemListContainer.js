@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import ItemList from "../ItemList/ItemList";
+import { useParams } from "react-router-dom";
+
 
 function ItemListContainer({greeting}){
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
-  
+  const { id } = useParams();
 
   useEffect(() => {
     const url = "https://api.mercadolibre.com/sites/MLA/search?q=tornillo";
@@ -16,11 +18,18 @@ function ItemListContainer({greeting}){
       .then((response) => {
         setItems(response.results);
         setLoading(false);
-        console.log(response);
       });
   }, []);
 
- 
+   useEffect(() => {
+    if (id) {
+      const category = items.filter((product) => product.categoryId == id);
+      setItems(category);
+    } else {
+      setItems(items);
+    }
+  }, [id, items]);
+  
 
   return (
     <div className="itemListContainer">
