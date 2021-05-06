@@ -1,25 +1,25 @@
 import ItemCount from '../ItemCount/ItemCount';
+import { Link } from "react-router-dom";
 
 const Item = ({ id, name, image, stock }) => {
   return (
     <div style={{ textAlign: "center" }}>
-      
-        <div style={{ width: "20rem" }}>
-          <img
-            variant="top"
-            src={image}
-            style={{ width: "20rem", height: "15rem" }}
-          />
-          <div>
-            <h3>{name}</h3>
-            <h5>{id}</h5>
-            <footer>
-              <ItemCount initial={1} stock={stock}/>
-              <p>{stock}</p>
-            </footer>
-          </div>
+      <div style={{ width: "20rem" }}>
+        <img
+          variant="top"
+          src={image}
+          style={{ width: "20rem", height: "15rem" }}
+        />
+        <div>
+          <h3>{name}</h3>
+          <h5>{id}</h5>
+          <footer>
+            <ItemCount initial={1} stock={stock} />
+            <Link to={"/item/" + id}> Conocer Mas</Link>
+            <p>{stock}</p>
+          </footer>
         </div>
-      
+      </div>
     </div>
   );
 };

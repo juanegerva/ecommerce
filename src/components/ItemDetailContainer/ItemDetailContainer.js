@@ -47,9 +47,6 @@ function ItemDetailContainer() {
     const promesa = new Promise((resolve, reject) => {
       setTimeout(function () {
         const i = products.find((products) => products.id == id);
-        console.log("entre");
-        console.log(i)
-        console.log(id)
         resolve(i);
       }, 3000);
     });

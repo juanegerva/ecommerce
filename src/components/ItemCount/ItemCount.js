@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const ItemCount = ({ initial, stock}) => {
+const ItemCount = ({ initial, stock, onAdd}) => {
   const [counter, setCounter] = useState(initial);
 
 
@@ -17,7 +17,7 @@ const ItemCount = ({ initial, stock}) => {
   };
 
   const cantidadAgregada = () => {
-      counter !== 0 ? console.log("AGREGADO") : console.log("no hay stock");
+      counter !== 0 ? onAdd(counter) : console.log("no hay stock");
   }
 
   return (
