@@ -3,6 +3,8 @@ import ItemCount from "../ItemCount/ItemCount";
 
 function ItemDetail({ products, name, image, description, stock, initial, price }) {
   
+ 
+
   return (
     <div style={{ textAlign: "center" }}>
       <div>
@@ -21,7 +23,7 @@ function ItemDetail({ products, name, image, description, stock, initial, price 
         </div>
       </div>
       <div>
-        <ItemCount initial={initial} stock={stock} />
+        <ItemCount initial={initial} stock={stock}/>
       </div>
     </div>
   );

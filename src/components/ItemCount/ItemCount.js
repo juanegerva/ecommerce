@@ -3,6 +3,10 @@ import React, { useState } from "react";
 const ItemCount = ({ initial, stock, onAdd}) => {
   const [counter, setCounter] = useState(initial);
 
+ 
+    const onAddItem = (amount) => {
+      alert(`Se agregaron ${amount} items`);
+    };
 
   const decremento = () => {
     if (counter > 0) {
@@ -17,7 +21,7 @@ const ItemCount = ({ initial, stock, onAdd}) => {
   };
 
   const cantidadAgregada = () => {
-      counter !== 0 ? onAdd(counter) : console.log("no hay stock");
+      counter !== 0 ? onAddItem(counter) : console.log("no hay stock");
   }
 
   return (
