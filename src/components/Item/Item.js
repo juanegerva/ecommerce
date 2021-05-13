@@ -1,27 +1,35 @@
-import ItemCount from '../ItemCount/ItemCount';
+import React from "react";
 import { Link } from "react-router-dom";
 
-const Item = ({ id, name, image, stock }) => {
+
+function Item({ id, name, image }) {
+ 
+
+  // Con los datos que me envía ItemList voy a mostrar el item.
   return (
-    <div style={{ textAlign: "center" }}>
-      <div style={{ width: "20rem" }}>
-        <img
-          variant="top"
-          src={image}
-          style={{ width: "20rem", height: "15rem" }}
-        />
+    <div className="item">
+      <div>
         <div>
-          <h3>{name}</h3>
-          <h5>{id}</h5>
-          <footer>
-            <ItemCount initial={1} stock={stock} />
+          <img
+            component="img"
+            height="300"
+            src={image}
+            title={name}
+          />
+          <div>
+            <h3 >
+              {name}
+            </h3>
+          </div>
+        </div>
+        <div>
+          <button >
             <Link to={"/item/" + id}> Conocer Mas</Link>
-            <p>{stock}</p>
-          </footer>
+          </button>
         </div>
       </div>
     </div>
   );
-};
+}
 
 export default Item;

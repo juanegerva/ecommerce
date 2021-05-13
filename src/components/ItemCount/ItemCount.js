@@ -1,45 +1,50 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { Link } from "react-router-dom";
+import { CartContext } from "../CartContext/CartContext";
 
-const ItemCount = ({ initial, stock, onAdd}) => {
-  const [counter, setCounter] = useState(initial);
+function ItemCount({ item, id, add, substract, counter }) {
+  const [open, setOpen] = useState(false);
 
- 
-    const onAddItem = (amount) => {
-      alert(`Se agregaron ${amount} items`);
-    };
+  const { addToCart } = useContext(CartContext);
 
-  const decremento = () => {
-    if (counter > 0) {
-      setCounter(counter - 1);
-    }
-  };
-
-  const incremento = () => {
-    if (counter < stock) {
-      setCounter(counter + 1);
-    }
-  };
-
-  const cantidadAgregada = () => {
-      counter !== 0 ? onAddItem(counter) : console.log("no hay stock");
+  // Uno las funciones de agregar al carrito con la de mostrar el "Terminar compra"
+  function addAndOpen(item, counter, id) {
+    addToCart(item, counter, id);
+    setOpen(true);
   }
-
   return (
-    <div style={{ textAlign: "center"}}>
-      <button onClick={decremento}>
-        -
-      </button>
-      <button className=""> {counter} </button>
-      <button className="" onClick={incremento}>
-        +
-      </button>
-      <div>
-        <button className="" onClick={cantidadAgregada}>
-          AGREGAR
+    <div className="itemCount">
+      <div className="itemCount__counter">
+        <button onClick={substract}>
+          -
+        </button>
+        <h3>{counter}</h3>
+        <button  onClick={add}>
+          +
         </button>
       </div>
+      {/* Si open es false, que se muestre Agregar al Carrito, pero si es true, Terminar la compra*/}
+      {!open ? (
+        <div className="itemCount__agregar">
+          <button
+            onClick={() => addAndOpen(item, counter, id)}
+          >
+            <h3>
+              Agregar al carrito{" "} 
+            </h3>
+          </button>
+        </div>
+      ) : (
+        <div>
+          <Link to="/cart">
+            <button>
+              <h3>Terminar la compra</h3>
+            </button>
+          </Link>
+        </div>
+      )}
     </div>
   );
-};
+}
 
 export default ItemCount;
