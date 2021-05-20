@@ -3,6 +3,7 @@ import ItemList from "../ItemList/ItemList";
 import { useParams } from "react-router-dom";
 
 function ItemListContainer({ greeting, products }) {
+  
   // Voy a usar este estado para guardar los productos que quiero mostrar, sean filtrados o no
   const [items, setItems] = useState([]);
 
@@ -10,7 +11,7 @@ function ItemListContainer({ greeting, products }) {
 
   useEffect(() => {
     if (id) {
-      const category = products.filter((product) => product.categoryId === id);
+      const category = products.filter((product) => product.categoryID === id);
       setItems(category);
     } else {
       setItems(products);
@@ -20,7 +21,7 @@ function ItemListContainer({ greeting, products }) {
   return (
     <div className="itemListContainer">
       <h2>{greeting}</h2>
-      
+    
       {products.length > 0 ? <ItemList products={items} /> : <h2>Loading</h2>}
     </div>
   );

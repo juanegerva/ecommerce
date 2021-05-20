@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import ItemDetail from "../ItemDetail/ItemDetail";
 import { useParams } from "react-router-dom";
+import { firestore } from "../../firebase/firebase";
 
+/*
 const products = [
   {
     id: 1,
@@ -33,44 +35,54 @@ const products = [
     initial: 1,
     categoryId: "ARANDELA",
   },
-];
+];*/
 
 function ItemDetailContainer() {
-    const [ item, setItem ] = useState()
+  // const [ item, setItem ] = useState()
+  
+  const [fireItem, setFireItem] = useState();
 
-    const { id } = useParams()
+  const { id } = useParams();
 
-    useEffect(() => {
-        const promesa = new Promise((resolve, reject)=>{
-        setTimeout(function(){
-            const i = products.find(product => product.id === parseInt(id))
-            resolve(i); 
-        }, 2000);
-        }
-        )
-        promesa.then(result => setItem(result)) 
-        promesa.catch(err => console.log("Algo salio mal")) 
+  /*useEffect(() => {
+    const promesa = new Promise((resolve, reject) => {
+      setTimeout(function () {
+        const i = products.find((product) => product.id === parseInt(id));
+        resolve(i);
+      }, 2000);
+    });
+    promesa.then((result) => setItem(result));
+    promesa.catch((err) => console.log("Algo salio mal"));
+  }, [id]);*/
 
-    },  [id]);
+  useEffect(() => {
+    const db = firestore;
+    const collection = db.collection("items");
+    const item = collection.doc(id);
 
-    return (
-        <div className="itemDetailContainer">
-           
-            { item ?
-            <ItemDetail
-             item={item}
-             id={item.id}
-             name={item.name}     
-             price={item.price}
-             image={item.image}
-             description={item.description}
-             stock={item.stock}
-             initial={item.initial}
-             />
-             :
-             <h2>Loading</h2>}
-        </div>
-    )
+    item.get().then((i) => {
+      setFireItem({ id: i.id, ...i.data() });
+    });
+  }, [id, fireItem]);
+
+  return (
+    <div className="itemDetailContainer">
+      {fireItem ? (
+        <ItemDetail
+          item={fireItem.item}
+          id={fireItem.id}
+          name={fireItem.name}
+          price={fireItem.price}
+          image={fireItem.image}
+          description={fireItem.description}
+          stock={fireItem.stock}
+          initial={fireItem.initial}
+        />
+      ) : (
+        <h2>Loading</h2>
+      )}
+    </div>
+  );
 }     
 
 export default ItemDetailContainer;

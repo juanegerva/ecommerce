@@ -6,8 +6,11 @@ import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailCont
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import CartProvider from "./components/CartContext/CartContext";
 import Cart from "./components/Cart/Cart";
+import { firestore } from "./firebase/firebase";
+
 
 //Esto lo podría tener en un archivo aparte también.
+/*
 const products = [
   {
     id: 1,
@@ -39,22 +42,26 @@ const products = [
     initial: 1,
     categoryId: "ARANDELA",
   },
-];
+];*/
 
 function App() {
-  const [items, setItems] = useState([]);
+  //const [items, setItems] = useState([]);
+  const [ fireItems, setFireItems ] = useState([])
 
-  useEffect(() => {
-  
-    const promesa = new Promise((resolve, reject) => {
-      setTimeout(function () {
-        resolve(products);
-      }, 2000);
-    });
+ useEffect(() => {
+   const db = firestore;
    
-    promesa.then((result) => setItems(result));
-    promesa.catch((err) => console.log("Algo salio mal"));
-  }, []);
+   const collection = db.collection("items");
+   const query = collection.get();
+   query
+     .then((result) => {
+       setFireItems(result.docs.map((p) => ({ id: p.id, ...p.data() })));
+     })
+     .catch((error) => {
+       console.log(error);
+     });
+ }, [fireItems]);
+
 
   return (
     <div className="app">
@@ -68,12 +75,12 @@ function App() {
           <Switch>
 
             <Route exact path="/">
-              <ItemListContainer greeting="Tornillos & fijaciones" products={items} />
+              <ItemListContainer greeting="Tornillos & fijaciones" products={fireItems} />
             </Route>
 
 
             <Route exact path="/category/:id">
-              <ItemListContainer greeting="Tornillos & fijaciones" products={items} />
+              <ItemListContainer greeting="Tornillos & fijaciones" products={fireItems} />
             </Route>
 
             <Route exact path="/item/:id">
