@@ -28,17 +28,17 @@ function CartProvider( { children }) {
 
     // Función para ver si el producto está en el carrito
     function isInCart(id){
+        console.log(id)
+        console.log(cart)
         const item = cart.find(p => p.id === id)
-        if (item === undefined){
-            return false
-        }
-        else {
-            return true
-        }
+        console.log(item)
+        return item === undefined ? false : true;
     }
 
     function addToCart(product, counter, id) {
-         
+         console.log(product)
+         console.log(counter)
+         console.log(id)
         // Si el producto está en el carrito, le agrego la cantidad, no un producto nuevo
         if (isInCart(id)){
             // Encuentro el producto 
@@ -57,6 +57,7 @@ function CartProvider( { children }) {
             // Guardo en el estado cart el producto que eligió y la cantidad
             const newItem = { id: product.id, name: product.name, image: product.image, price: product.price, amount: counter }
             setCart([...cart, newItem]) 
+            console.log(cart)
         }
     }
 

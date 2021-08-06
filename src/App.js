@@ -9,41 +9,6 @@ import Cart from "./components/Cart/Cart";
 import { firestore } from "./firebase/firebase";
 
 
-//Esto lo podría tener en un archivo aparte también.
-/*
-const products = [
-  {
-    id: 1,
-    name: "bULON",
-    price: "10",
-    image: "https://picsum.photos/id/237/200/300",
-    description: "ZINCADO",
-    stock: 10,
-    initial: 1,
-    categoryId: "BULONES",
-  },
-  {
-    id: 2,
-    name: "TUERCA",
-    price: "20",
-    image: "https://picsum.photos/seed/picsum/200/300",
-    description: "PASO WHITWORTH",
-    stock: 20,
-    initial: 1,
-    categoryId: "TUERCA",
-  },
-  {
-    id: 3,
-    name: "ARANDELA",
-    price: "30",
-    image: "https://picsum.photos/200/300?grayscale",
-    description: "ARANDELA PLANA",
-    stock: 15,
-    initial: 1,
-    categoryId: "ARANDELA",
-  },
-];*/
-
 function App() {
   //const [items, setItems] = useState([]);
   const [ fireItems, setFireItems ] = useState([])
@@ -60,8 +25,8 @@ function App() {
      .catch((error) => {
        console.log(error);
      });
- }, [fireItems]);
-
+ }, []);
+  
 
   return (
     <div className="app">

@@ -19,6 +19,10 @@ const categories = [
     categoryId: "ARANDELA",
     name: "ARANDELA",
   },
+  {
+    categoryId: "AUTOPERFORANTE",
+    name: "HEXAGONAL MECHA",
+  },
 ];
 
 function Navbar() {

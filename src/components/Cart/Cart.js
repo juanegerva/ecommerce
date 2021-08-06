@@ -8,6 +8,9 @@ import firebase from "firebase/app";
 function Cart() {
   // Traigo las funciones de Cart y de ClearCart del contexto
   const { cart, clearCart, total } = useContext(CartContext);
+  console.log({cart})
+  console.log({clearCart})
+  console.log({total})
   // Uso este estado para mostrar el formulario
   const [openPay, setOpenPay] = useState(false);
   // Estos estados me van a servir para guardar la información del formulario
