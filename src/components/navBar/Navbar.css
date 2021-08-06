@@ -1,7 +1,5 @@
 .topNav {
-  display: flex;
-  width: 100%;
-  align-items: center;
+  
   justify-content: space-between;
   padding: 0 12px;
 }
@@ -9,6 +7,7 @@
 .titleNav { 
   font-size: 20px;
   font-weight: bold;
+  align-items: center;
 } 
 
 .links {
@@ -17,10 +16,25 @@
 }
 
 .link {
-  margin: 0 8px;
-  padding-right: 12px;
+  justify-content: space-between;
+  margin:10px;
+  padding: auto;
+  display: flex;
+
 }
 
 .navBar {
-  background-color: rgb(207, 206, 206);
+  background-color: rgb(243, 241, 103);
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+}
+
+p {
+  margin:15px;
+   display: flex;
+   justify-content: space-between;
+  
 }
