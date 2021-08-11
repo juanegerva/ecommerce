@@ -1,0 +1,7 @@
+.cartWidget {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+}
