@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/juanegerva/ecommerce/static/css/main.1d037753.chunk.css",
+    "main.js": "/juanegerva/ecommerce/static/js/main.99b80ed0.chunk.js",
+    "main.js.map": "/juanegerva/ecommerce/static/js/main.99b80ed0.chunk.js.map",
+    "runtime-main.js": "/juanegerva/ecommerce/static/js/runtime-main.05a29c32.js",
+    "runtime-main.js.map": "/juanegerva/ecommerce/static/js/runtime-main.05a29c32.js.map",
+    "static/js/2.9cd06f37.chunk.js": "/juanegerva/ecommerce/static/js/2.9cd06f37.chunk.js",
+    "static/js/2.9cd06f37.chunk.js.map": "/juanegerva/ecommerce/static/js/2.9cd06f37.chunk.js.map",
+    "static/js/3.70d3e0c1.chunk.js": "/juanegerva/ecommerce/static/js/3.70d3e0c1.chunk.js",
+    "static/js/3.70d3e0c1.chunk.js.map": "/juanegerva/ecommerce/static/js/3.70d3e0c1.chunk.js.map",
+    "index.html": "/juanegerva/ecommerce/index.html",
+    "static/css/main.1d037753.chunk.css.map": "/juanegerva/ecommerce/static/css/main.1d037753.chunk.css.map",
+    "static/js/2.9cd06f37.chunk.js.LICENSE.txt": "/juanegerva/ecommerce/static/js/2.9cd06f37.chunk.js.LICENSE.txt",
+    "static/media/NavBarLogo.0decc187.png": "/juanegerva/ecommerce/static/media/NavBarLogo.0decc187.png",
+    "static/media/cartIcon.c7333b75.svg": "/juanegerva/ecommerce/static/media/cartIcon.c7333b75.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.05a29c32.js",
+    "static/js/2.9cd06f37.chunk.js",
+    "static/css/main.1d037753.chunk.css",
+    "static/js/main.99b80ed0.chunk.js"
+  ]
+}
