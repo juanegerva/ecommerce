@@ -8,22 +8,22 @@ import firebase from "firebase/app";
 function Cart() {
   // Traigo las funciones de Cart y de ClearCart del contexto
   const { cart, clearCart, total } = useContext(CartContext);
-  console.log({cart})
-  console.log({clearCart})
-  console.log({total})
   // Uso este estado para mostrar el formulario
   const [openPay, setOpenPay] = useState(false);
   // Estos estados me van a servir para guardar la información del formulario
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
+  
+  
+  
 
-
-   function submitOrder(){
-
-        
+   function submitOrder(e){
+        e.preventDefault()
+        console.log(name);
         const db = firestore
         const orders = db.collection('orders')
+        
 
         const order = {
             buyer: { name: name, phone: phone, email: email},
@@ -31,9 +31,14 @@ function Cart() {
             date: firebase.firestore.Timestamp.fromDate(new Date()),
             total: total,
         }
-        orders.add(order)
-        .then(({ id }) => alert("Anotá el id de tu compra " + id))
-        .catch((error) => console.log(error))
+
+        orders
+          .add(order)
+          .then(({ id }) => alert(`Anotá el id de tu compra ${id}`))
+          .then(clearCart)
+          .then(setOpenPay(false))
+          .catch((error) => alert(`no funciona ${error}`));
+      
     }
 
   // Rendereo condicional para mostrar los productos o que vaya a comprar
@@ -68,10 +73,14 @@ function Cart() {
 
       {cart.length > 0 && (
         <>
-          <h2>${total}</h2>
+          <h2>Total ${total}</h2>
           <div className="cartItems__buttons">
             <button onClick={clearCart}>Vaciar carrito</button>
-            <button onClick={() => {setOpenPay(true)}}>
+            <button
+              onClick={() => {
+                setOpenPay(true);
+              }}
+            >
               PAGAR
             </button>
           </div>
@@ -79,28 +88,29 @@ function Cart() {
       )}
 
       {openPay && (
-        <form  noValidate autoComplete="off">
+        <form noValidate autoComplete="off">
           <input
             id="standard-basic"
             label="Name"
+            placeholder="Ingrese su nombre"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
           <input
             id="standard-basic"
             label="Telephone"
+            placeholder="Ingrese su telefono"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
           />
           <input
             id="standard-basic"
             label="Email"
+            placeholder="Ingrese su email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-          <button onClick={submitOrder}>
-            completar orden
-          </button>
+          <button onClick={submitOrder}>completar orden</button>
         </form>
       )}
     </div>

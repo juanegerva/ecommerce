@@ -3,16 +3,10 @@ import ItemDetail from "../ItemDetail/ItemDetail";
 import { useParams } from "react-router-dom";
 import { firestore } from "../../firebase/firebase";
 
-
-
 function ItemDetailContainer() {
- 
-  
   const [fireItem, setFireItem] = useState([]);
 
   const { id } = useParams();
- 
-  
 
   useEffect(() => {
     const db = firestore;
@@ -21,32 +15,24 @@ function ItemDetailContainer() {
     const query = collection.get();
     query
       .then((result) => {
-        setFireItem(result.docs.map((p) => ({ id: p.id, ...p.data()})));
+        setFireItem(result.docs.map((p) => ({ id: p.id, ...p.data() })));
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((error) => {});
   }, [id]);
 
-
-
-let resultado = []
-fireItem.forEach(function (items) {
-  if (items.id == id) {
-  console.log(items);
-  resultado = items;
-} 
-  console.log(items.id);
-});
-
-
+  let resultado = [];
+  fireItem.forEach(function (items) {
+    if (items.id === id) {
+      resultado = items;
+    }
+  });
 
   return (
     <div className="itemDetailContainer">
       {fireItem ? (
         <ItemDetail
           item={resultado.item}
-          id={resultado.id} 
+          id={resultado.id}
           name={resultado.name}
           price={resultado.price}
           image={resultado.image}
@@ -59,6 +45,6 @@ fireItem.forEach(function (items) {
       )}
     </div>
   );
-}     
+}
 
 export default ItemDetailContainer;

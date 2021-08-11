@@ -10,7 +10,6 @@ import { firestore } from "./firebase/firebase";
 
 
 function App() {
-  //const [items, setItems] = useState([]);
   const [ fireItems, setFireItems ] = useState([])
 
  useEffect(() => {
@@ -35,17 +34,21 @@ function App() {
         {/* Toda la app la envuelvo en BrowserRouter */}
         <BrowserRouter>
           {/* Navbar la dejo fuera del Switch porque quiero que siempre esté, sin importar la ruta */}
-          <NavBar />
+          <NavBar/>
 
           <Switch>
-
             <Route exact path="/">
-              <ItemListContainer greeting="Tornillos & fijaciones" products={fireItems} />
+              <ItemListContainer
+                greeting="Tornillos & fijaciones"
+                products={fireItems}
+              />
             </Route>
 
-
             <Route exact path="/category/:id">
-              <ItemListContainer greeting="Tornillos & fijaciones" products={fireItems} />
+              <ItemListContainer
+                greeting="Tornillos & fijaciones"
+                products={fireItems}
+              />
             </Route>
 
             <Route exact path="/item/:id">

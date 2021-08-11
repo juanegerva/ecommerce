@@ -11,7 +11,7 @@ function Item({ id, name, image }) {
       <div>
         <div>
           <img
-            component="img"
+            alt="img"
             height="300"
             src={image}
             title={name}

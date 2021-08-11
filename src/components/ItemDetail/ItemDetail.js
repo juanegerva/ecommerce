@@ -13,13 +13,11 @@ function ItemDetail({
   initial,
   price,
 }) {
-  console.log({ initial });
+
   // Este estado lo voy a usar para ir chequeando la cantidad de productos
   const [count, setCount] = useState(0);
   //count = initial
-  console.log(count);
-  console.log(initial);
-  console.log(stock);
+  
   // Si el contador es menor que el stock, cuando el usuario hace click agrego 1
   function add() {
     if (count < stock) {
@@ -59,9 +57,11 @@ function ItemDetail({
           stock={stock}
           add={add}
           substract={substract}
-          item={item}
+          item={name}
           counter={count}
           id={id}
+          price={price}
+          image={image}
         />
       </div>
     </div>

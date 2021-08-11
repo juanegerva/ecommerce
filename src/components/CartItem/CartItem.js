@@ -4,10 +4,7 @@ import { CartContext } from "../CartContext/CartContext";
 
 function CartItem({ id, name, image, price, amount }) {
   const { eliminateFromCart } = useContext(CartContext);
-  console.log({id})
-console.log({ name  });
-console.log({ price });
-console.log({ amount });
+  
 
   return (
     <div className="cartItem">

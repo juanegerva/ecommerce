@@ -5,10 +5,12 @@ export const CartContext = React.createContext();
 
 function CartProvider( { children }) {
     // Preparo el estado de mi carrito. Acá voy a guardar cada vez que alguien guarde algo nuevo
+    
     const [ cart, setCart ] = useState([])
     const [ quantity, setQuantity ] = useState(0)
     const [ total, setTotal ] = useState()
 
+    
     // Cada vez que se modifique el carrito corro el total nuevamente
     useEffect(() => {
         var t = 0
@@ -28,17 +30,12 @@ function CartProvider( { children }) {
 
     // Función para ver si el producto está en el carrito
     function isInCart(id){
-        console.log(id)
-        console.log(cart)
-        const item = cart.find(p => p.id === id)
-        console.log(item)
+        const item = cart.find(p => p.id === id)  
         return item === undefined ? false : true;
     }
 
-    function addToCart(product, counter, id) {
-         console.log(product)
-         console.log(counter)
-         console.log(id)
+    function addToCart(products, counter, id, price,image) {
+        
         // Si el producto está en el carrito, le agrego la cantidad, no un producto nuevo
         if (isInCart(id)){
             // Encuentro el producto 
@@ -48,22 +45,21 @@ function CartProvider( { children }) {
             // Armo el nuevo producto cambiandole la cantidad
             const newProduct = { id: oldProduct.id, name: oldProduct.name, image: oldProduct.image, price: oldProduct.price, amount: newQuantity}
             // Elimino el antiguo producto para no tener duplicados
-            const cartWithoutOld = cart.filter(product => product.id =! id)
+            const cartWithoutOld = cart.filter(products => products.id =! id)
             // Agrego el nuevo producto
             const cartWithNew = [...cartWithoutOld, newProduct]
             // Guardo en el estado el nuevo listado
             setCart(cartWithNew)            
         } else {
             // Guardo en el estado cart el producto que eligió y la cantidad
-            const newItem = { id: product.id, name: product.name, image: product.image, price: product.price, amount: counter }
+            const newItem = { id: id, name: products, image: image, price: price, amount: counter }
             setCart([...cart, newItem]) 
-            console.log(cart)
         }
     }
 
     function eliminateFromCart(id){
         // Elimino el producto por Id filtrando y quedandome con todos los que no tienen el id seleccionado
-        const newCart = cart.filter(product => product.id !== id)
+        const newCart = cart.filter(products => products.id !== id)
         // Guardo el nuevo carrito
         setCart(newCart)
     }

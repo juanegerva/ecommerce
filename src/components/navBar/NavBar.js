@@ -27,15 +27,10 @@ function Navbar() {
     <div className="navBar">
       <div className="topNav">
         <Link to={"/"}>
-          <img
-            src={logo}
-            alt="logo"
-            width={100}
-          />
+          <img src={logo} alt="logo" width={100}></img>
         </Link>
       </div>
       <div className="link">
-       
         {categories.map((category) => (
           <Link to={`/category/${category.categoryId}`}>
             <p>{category.name}</p>

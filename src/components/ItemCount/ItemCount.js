@@ -2,16 +2,15 @@ import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { CartContext } from "../CartContext/CartContext";
 
-function ItemCount({ item, id, add, substract, counter }) {
-  console.log({counter})
+function ItemCount({ item, id, add, substract, counter,price, image}) {
+  
   const [open, setOpen] = useState(false);
-
   const { addToCart } = useContext(CartContext);
 
   // Uno las funciones de agregar al carrito con la de mostrar el "Terminar compra"
-  function addAndOpen(item, counter, id) {
-   console.log({ counter });
-    addToCart(item, counter, id);
+  function addAndOpen(item, counter, id,price,image) {
+   
+    addToCart(item, counter, id,price, image);
     setOpen(true);
   }
   return (
@@ -29,7 +28,7 @@ function ItemCount({ item, id, add, substract, counter }) {
       {!open ? (
         <div className="itemCount__agregar">
           <button
-            onClick={() => addAndOpen(item, counter, id)}
+            onClick={() => addAndOpen(item, counter, id,price, image)}
           >
             <h3>
               Agregar al carrito{" "} 
