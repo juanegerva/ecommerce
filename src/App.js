@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useState, useEffect } from "react";
 import "./App.css";
 import NavBar from "./components/navBar/NavBar";
@@ -27,12 +28,21 @@ function App() {
  }, []);
   
 
+=======
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { CartContext } from './context/CartContext'
+import Home from './pages/Home'
+import ItemDetailContainer from './pages/ItemDetailContainer'
+import Cart from './pages/Cart'
+import Navbar from './components/Navbar'
+
+function App() {
+>>>>>>> d3e067e6dc0f639a8982894b7277f02c4b40f372
   return (
-    <div className="app">
-      {/* Envuelvo toda mi app en mi provider para poder tomar los datos en cualquier componente */}
-      <CartProvider>
-        {/* Toda la app la envuelvo en BrowserRouter */}
+    <div>
+      <CartContext>
         <BrowserRouter>
+<<<<<<< HEAD
           {/* Navbar la dejo fuera del Switch porque quiero que siempre esté, sin importar la ruta */}
           <NavBar/>
 
@@ -59,10 +69,29 @@ function App() {
               <Cart />
             </Route>
           </Switch>
+=======
+          <Navbar logo={'./logo.svg'}/>
+          <div className="container">
+            <Switch>
+              <Route exact path="/">
+                <Home/>
+              </Route>
+              <Route path="/category/:categoryID">
+                <Home/>
+              </Route>
+              <Route path="/item/:productId">
+                <ItemDetailContainer/>
+              </Route>
+              <Route path="/cart">
+                <Cart/>
+              </Route>
+            </Switch>
+          </div>
+>>>>>>> d3e067e6dc0f639a8982894b7277f02c4b40f372
         </BrowserRouter>
-      </CartProvider>
+      </CartContext>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
