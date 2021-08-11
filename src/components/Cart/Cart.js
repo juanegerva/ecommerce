@@ -14,32 +14,27 @@ function Cart() {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
-  
-  
-  
 
-   function submitOrder(e){
-        e.preventDefault()
-        console.log(name);
-        const db = firestore
-        const orders = db.collection('orders')
-        
+  function submitOrder(e) {
+    e.preventDefault();
+    console.log(name);
+    const db = firestore;
+    const orders = db.collection("orders");
 
-        const order = {
-            buyer: { name: name, phone: phone, email: email},
-            items: cart,
-            date: firebase.firestore.Timestamp.fromDate(new Date()),
-            total: total,
-        }
+    const order = {
+      buyer: { name: name, phone: phone, email: email },
+      items: cart,
+      date: firebase.firestore.Timestamp.fromDate(new Date()),
+      total: total,
+    };
 
-        orders
-          .add(order)
-          .then(({ id }) => alert(`Anotá el id de tu compra ${id}`))
-          .then(clearCart)
-          .then(setOpenPay(false))
-          .catch((error) => alert(`no funciona ${error}`));
-      
-    }
+    orders
+      .add(order)
+      .then(({ id }) => alert(`Anotá el id de tu compra ${id}`))
+      .then(clearCart)
+      .then(setOpenPay(false))
+      .catch((error) => alert(`no funciona ${error}`));
+  }
 
   // Rendereo condicional para mostrar los productos o que vaya a comprar
   return (
